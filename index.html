@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>TODO List</title>
+   <style>
+       
+        body{
+            background-image: url(https://i.pinimg.com/736x/19/17/42/191742980574958d9b3ab2b6eaccc779.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .main{
+            width: 600px;
+            margin: 100px auto;
+            text-align: center;
+            box-shadow: 0 0 10px black;
+            padding: 30px;
+            background: linear-gradient(to right, #8a2387, #e94057, #f27121);
+           border-radius: 25px;
+           height: 28vh;
+        }
+        .main:hover{
+            background: linear-gradient(to right, #12c2e9, #c471ed, #f64f59);
+            width:650px;
+            margin: 120px auto;
+            height: 30vh;
+        }
+        div{
+            text-align: center;
+            padding-left: 70px;
+            padding-bottom: 10px;
+        }   
+        button{
+            margin-left: 10px;
+            border-radius: 25px;
+        }
+        button:hover{
+            background-color:rgb(230, 208, 18);
+        }
+        span{
+            margin-left: -57px;
+            color: rgb(230, 32, 164);
+            text-shadow: 2px 2px #FF0000;
+        
+        }
+        h1{
+            text-shadow: 2px 2px #FF0000;
+        }
+        input{
+            border-radius: 25px;
+        }
+        label{
+            font-size: 28px;
+            text-shadow: 2px 2px #64f304;
+            color: coral;
+        }
+
+   </style>
+</head>
+
+<body>
+    <div class="main">
+    <h1><span class="title">To-do</span> List</h1>
+    <div class="inputDiv">
+    	 <label> Enter Text:</label> <input type="text" class="input">
+    	   <button class="add">Add New Element</button><br>
+           <span id="error"></span>
+    </div>
+    <div class="container">
+    </div>
+    <script>
+        const container = document.querySelector('.container');
+var inputValue = document.querySelector('.input');
+const add = document.querySelector('.add');
+class item{
+constructor(name){
+this.createItem(name);
+}
+createItem(name){
+var itemBox = document.createElement('div');
+itemBox.classList.add('item');
+
+var input = document.createElement('input');
+input.type = "text";
+input.disabled = true;
+input.value = name;
+input.classList.add('item_input');
+
+var edit = document.createElement('button');
+edit.classList.add('edit');
+edit.innerHTML = "Edit";
+edit.addEventListener('click', () => this.edit(input, name));
+
+var remove = document.createElement('button');
+remove.classList.add('remove');
+remove.innerHTML = "Remove";
+remove.addEventListener('click', () => this.remove(itemBox, name));
+
+container.appendChild(itemBox);
+
+itemBox.appendChild(input);
+itemBox.appendChild(edit);
+itemBox.appendChild(remove);
+
+}
+
+edit(input, name){
+if(input.disabled == true){
+   input.disabled = !input.disabled;
+}
+else{
+    input.disabled = !input.disabled;
+   
+}
+}
+
+ remove(itemBox, name){
+itemBox.parentNode.removeChild(itemBox);
+ }
+}
+
+add.addEventListener('click', check);
+window.addEventListener('keydown', (e) => {
+if(e.which == 13){
+check();
+}
+})
+
+function check(){
+if(inputValue.value=="")
+    {
+        document.getElementById("error").innerHTML="Please Enter the value";
+        return;
+    } else
+    {
+        document.getElementById("error").innerHTML="";
+        new item(inputValue.value);
+    }
+}
+for (var v = 0 ; v < input.length ; v++){
+new item(input[v]);
+}
+    </script>
+</div>             
+</body>
+</html>
